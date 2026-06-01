@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby18
+#!/usr/bin/env ruby
 
 # REGEXP HELPER
 # David Lee (c) 2005. 
