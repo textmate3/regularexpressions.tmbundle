@@ -20,10 +20,10 @@ getopts( 'c:x' );
 my @color = split /,/, our $opt_c || 'red';
 
 @ARGV or die <<"END_USAGE";
-usage: @{[ colored( 'hl [ -c colour ] [ -x ] pattern [ file... ] [ < input ]', 'bold' ) ]}
+usage: @{[ colored( 'hl [ -c color ] [ -x ] pattern [ file... ] [ < input ]', 'bold' ) ]}
        You can use capturing parens in your pattern. In that case,
        you can supply multiple attributes separated by commas,
-       which will be used to individually colour the submatches.
+       which will be used to individually color the submatches.
        @{[ colored( '-x', 'bold' ) ]} will supress lines without matches.
 END_USAGE
 
@@ -33,8 +33,8 @@ my $out;
 
 while ( <> ) {
     s{ $rx }{ colored_match() }gex or not( our $opt_x ) or next;
-    
-	s/&/&amp;/g; 
+
+	s/&/&amp;/g;
 	s/</&lt;/g;
 	s/>/&gt;/g;
 
@@ -44,7 +44,7 @@ while ( <> ) {
 	s/(<[^>]+>)|( )/$1?$1:'&nbsp;'/ges;
 	print;
 	print "<br/>";
-	
+
 }
 
 
@@ -80,6 +80,6 @@ sub colored_match {
 
 sub colored {
 	my ($text, $color)=@_;
-	
+
 	return $LT . "b". $GT . $LT . "font color=\"$color\"" . $GT . $text . $LT . "/font$GT" . $LT . "/b". $GT;
 }
